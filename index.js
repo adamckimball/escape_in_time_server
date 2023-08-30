@@ -1,8 +1,9 @@
 const express = require("express");
 const http = require("http");
+require("dotenv").config();
 const { Server } = require("socket.io");
 
-const PORT = process.env.PORT || "http://localhost:3001";
+const PORT = process.env.PORT;
 const NEW_ESCAPE_MESSAGE_EVENT = "newEscapeMessage";
 const START_ESCAPE_EVENT = "startEscape";
 
@@ -10,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: PORT,
+    origin: process.env.CLIENT_PORT,
   },
 });
 
